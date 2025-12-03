@@ -3053,7 +3053,7 @@ select:focus {
 
 /* Dark Mode - Mobile Navigation */
 [data-theme="dark"] .main-nav {
-  background: transparent !important;
+  background: #0d205fce !important;
 }
 
 [data-theme="dark"] .main-nav .nav-link,
