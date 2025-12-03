@@ -1,38 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const body = document.body;
-  const mobileToggle = document.querySelector(".mobile-toggle");
-  const nav = document.querySelector(".main-nav");
-
-  // Hamburger menu toggle functionality
-  if (mobileToggle && nav) {
-    mobileToggle.addEventListener("click", (evt) => {
-      evt.preventDefault();
-      evt.stopPropagation();
-      body.classList.toggle("mobile-nav-open");
-    });
-
-    // Close menu when clicking navigation links
-    const closeNavOnLink = (evt) => {
-      const link = evt.target.closest("a");
-      if (link) {
-        body.classList.remove("mobile-nav-open");
-      }
-    };
-
-    nav.addEventListener("click", closeNavOnLink);
-
-    // Close menu when clicking outside
-    const closeMobileNav = (evt) => {
-      if (body.classList.contains("mobile-nav-open")) {
-        const target = evt.target;
-        if (!nav.contains(target) && !mobileToggle.contains(target)) {
-          body.classList.remove("mobile-nav-open");
-        }
-      }
-    };
-
-    document.addEventListener("click", closeMobileNav);
-  }
+  // Mobile navigation and dropdown functionality is handled by main.js
+  // This file only handles Home 2 specific features (carousel, animations, etc.)
 
   if (typeof Swiper !== "undefined") {
     new Swiper(".home2-carousel", {
