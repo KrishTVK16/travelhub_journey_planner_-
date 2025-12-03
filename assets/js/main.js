@@ -74,15 +74,18 @@ document.addEventListener("DOMContentLoaded", () => {
     mobileToggle.addEventListener("click", handleMobileToggle);
 
     // Close menu when clicking/touching navigation links
-    const closeNavOnLink = (evt) => {
+    // Handle all navigation links (including dropdown links) to ensure they work
+    nav.addEventListener("click", (evt) => {
       const link = evt.target.closest("a");
-      if (link) {
-        body.classList.remove("mobile-nav-open");
+      // Handle both regular nav links and dropdown menu links
+      if (link && (link.classList.contains("nav-link") || link.classList.contains("dropdown-link"))) {
+        // Close mobile menu but allow navigation to proceed
+        if (body.classList.contains("mobile-nav-open")) {
+          body.classList.remove("mobile-nav-open");
+        }
+        // Navigation will proceed naturally - don't prevent default
       }
-    };
-
-    nav.addEventListener("click", closeNavOnLink);
-    nav.addEventListener("touchend", closeNavOnLink);
+    });
 
     // Close menu when clicking/touching outside
     const closeMobileNav = (evt) => {
@@ -183,7 +186,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (menu) {
       menu.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => closeDropdown(toggle));
+        link.addEventListener("click", () => {
+          closeDropdown(toggle);
+          // Close mobile menu when clicking dropdown links
+          if (body.classList.contains("mobile-nav-open")) {
+            body.classList.remove("mobile-nav-open");
+          }
+        });
       });
     }
 
