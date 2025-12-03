@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchPanels = document.querySelectorAll("[data-search-panel]");
   const scrollTopBtn = document.querySelector("[data-scroll-top]");
 
-  // Initialize Swiper for testimonial carousel
-  if (typeof Swiper !== "undefined") {
+  // Initialize Swiper for testimonial carousel (skip on home2 page - handled by home2.js)
+  if (typeof Swiper !== "undefined" && !body.classList.contains("home2")) {
     const testimonialCarousel = document.querySelector(".testimonial-carousel");
     if (testimonialCarousel) {
       new Swiper(".testimonial-carousel", {
