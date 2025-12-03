@@ -415,6 +415,7 @@ h4 {
   letter-spacing: 0.05em;
   color: var(--primary-color);
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .brand img {
@@ -670,11 +671,12 @@ h4 {
 
 .hero-stats {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: clamp(0.5rem, 1.5vw, 0.75rem);
   justify-content: center;
   margin: clamp(0.125rem, 0.25vw, 0.25rem) 0;
   flex-shrink: 1;
+  align-items: center;
 }
 
 .stat {
@@ -697,6 +699,7 @@ h4 {
   color: rgba(71, 85, 105, 0.8);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  white-space: nowrap;
 }
 
 .search-panel {
@@ -718,17 +721,20 @@ h4 {
   align-items: end;
 }
 
-.search-panel form button[data-search-submit] {
-  grid-column: 1 / -1;
-  justify-self: center;
-  width: auto;
-  min-width: 200px;
-}
-
 .search-panel label {
   font-size: var(--body-sm);
   font-weight: 600;
   color: rgba(71, 85, 105, 0.8);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.search-panel .search-btn {
+  display: block;
+  margin: 1rem auto 0;
+  width: auto;
+  min-width: 200px;
 }
 
 .search-panel select,
@@ -740,6 +746,9 @@ h4 {
   font-size: var(--body);
   background-color: #fff;
   transition: border-color var(--transition), box-shadow var(--transition);
+  box-sizing: border-box;
+  height: auto;
+  min-height: 44px;
 }
 
 .search-panel select:focus,
@@ -2780,9 +2789,10 @@ select:focus {
 
 @media (max-width: 680px) {
   .hero {
-    height: calc(100vh - 70px);
-    max-height: calc(100vh - 70px);
-    padding: clamp(0.75rem, 1.5vw, 1rem) 0;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    padding: clamp(1.5rem, 4vw, 2.5rem) 0;
   }
 
   .search-panel {

@@ -129,8 +129,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!form || !submitButton) return;
 
-      form.addEventListener("submit", (evt) => {
+      const handleSubmit = (evt) => {
         evt.preventDefault();
+        
+        // Validate form before submission
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
         submitButton.disabled = true;
         submitButton.dataset.loading = "true";
 
@@ -143,7 +150,10 @@ document.addEventListener("DOMContentLoaded", () => {
           document.body.appendChild(toast);
           setTimeout(() => toast.remove(), 3200);
         }, 1100);
-      });
+      };
+
+      form.addEventListener("submit", handleSubmit);
+      submitButton.addEventListener("click", handleSubmit);
     });
   }
 
